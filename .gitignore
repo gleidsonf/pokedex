@@ -13,4 +13,3 @@ platforms/ios/.staging
 
 # Emulator logs
 platforms/ios/cordova/console.log
-node_modules/
