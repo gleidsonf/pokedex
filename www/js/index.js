@@ -1,46 +1,53 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+$.getJSON("https://pokeapi.co/api/v2/pokemon/?limit=151", function(data){
+  lista = $("#pokemons");
+  data.results.forEach(function(pokemon){
+    var li = $('<li></li>');
+    li.text(pokemon.name);
+      lista.append(li);
+      console.log(pokemon);
+  });
+});
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
+var pokemon;
+$.getJSON("https://pokeapi.co/api/v2/pokemon/1/", function(data) {
+  pokemon = data;
+  console.log(data);
+});
+// pokemon.name, pokemon.abilities[0].ability.name, pokemon.height, pokemon.weight,
+// pokemon.types[0].type.name, pokemon.stats[0](Status base, valor de atk e def)
+// pokemon.sprites
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+$.ajax({
+	url: 'https://pokeapi.co/api/v2/pokemon/1',
+	success: function(data) {
+		console.log('Funciona');
+		$('.name').text(data.name);
+		$('.sprite').attr('src', data.sprites.front_default);
+	},
+	error: function(err){
+		console.log('nao funciona');
+	}
 
-        console.log('Received Event: ' + id);
-    }
-};
+});
 
-app.initialize();
+var detalhe;
+$.getJSON(pokemon.species.url, function(data) {detalhe = data;});
+// detalhe.flavor_text_entries[1].flavor_text, detalhe.habitat.name
+
+
+var pe; // pokemoon_evolucao
+$.getJSON('https://pokeapi.co/api/v2/evolution-chain/1/', function(data) {
+	console.log(data);
+	pe = data;
+});
+
+// pe.chain.evolves_to[0].species.name
+// "ivysaur"
+// pe.chain.evolves_to[0].evolves_to[0].species.name
+// "venusaur"
+// pe.chain.species.name
+
+function getData(url){
+  $.getJSON(url, )
+}
