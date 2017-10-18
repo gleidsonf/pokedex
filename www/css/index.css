@@ -8,7 +8,10 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: gray;
+  background-color: black;
+  float: left;
+  margin: 10px;
+  border: #686b6d 4px solid;
 }
 
 .circle {
@@ -21,6 +24,7 @@
   margin-right: 0;
   list-style: none;
   display: inline-block;
+  margin-top: 10px;
 }
 
 .bg-red {
@@ -34,3 +38,15 @@
 .bg-green {
   background-color: green;
 }
+
+.panel-external {
+  background-color: grey;
+  border-radius: 5px;
+  /*border-bottom-left-radius: 80px 50px;*/
+}
+
+.panel {
+  /*background-image: url(../img/pokeball_bg.jpg);*/
+}
+
+/* Artigo Shapes https://css-tricks.com/examples/ShapesOfCSS/*/
